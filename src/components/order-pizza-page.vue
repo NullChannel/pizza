@@ -1,11 +1,17 @@
 <template>
   <div>
-    <p>The Order Pizza</p>
+    <p> {{ pizza.title }}</p>
   </div>
 </template>
 
 <script>
   export default {
+    props: ['id'],
+    computed: {
+      pizza() {
+        return this.$store.getters.getPizza( this.id )
+      }
+    },
     data() {
       return {
 

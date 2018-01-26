@@ -16,6 +16,7 @@ export default new Router({
     {
       path: '/order-pizza/:id',
       name: 'OrderPizza',
+      props: true,
       component: OrderPizza
     }
   ],
