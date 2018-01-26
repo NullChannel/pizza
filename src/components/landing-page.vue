@@ -2,7 +2,7 @@
 
   <v-container>
 
-    <img src="../assets/p4.jpg" class="bg" />
+    <img src="../assets/p2.jpg" class="bg" />
 
     <v-layout column>
 
@@ -142,6 +142,10 @@ img.bg {
   right: 12px;
   font-size: 36px;
   text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.9);
+}
+
+.card {
+  box-shadow: 6px 6px 9px rgba(0, 0, 0, 0.3) !important;
 }
 
 </style>

@@ -60,7 +60,7 @@
               color="blue darken-1"
               dark
               @click.native="onOrder"
-            >Order</v-btn>
+            >Buy</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
