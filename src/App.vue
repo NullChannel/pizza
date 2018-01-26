@@ -1,8 +1,6 @@
 <template>
   <v-app class="app-style">
 
-    <!--<div style="display: none">{{ msg }}</div>-->
-
     <tool-bar-ctrl
       class="app-header"
       :provider_logo="company.logo"

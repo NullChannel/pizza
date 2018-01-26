@@ -31,7 +31,6 @@ export const store = new Vuex.Store({
         id: "9b9ebe22-6951-4d13-b6f3-e8fcb11bac02",
         title: "Cheazy-E",
         subtitle: "Frisee, Kalamata Olives, Asiago, Mozzarella, Muenster, Tomato Sauce",
-        price: "12",
         prices: ['10','12','14']
       },
       {
@@ -42,11 +41,9 @@ export const store = new Vuex.Store({
         id: "887c0bcd-5a8f-42d9-be8e-bdd10561698f",
         title: "Thom Be Good",
         subtitle: "Calabrian Chili, Mozzarella, Pepperoni, Roasted Garlic, Sausage, Tomato Sauce",
-        price: "15",
         prices: ['13','15','17']
       },
       {
-        enable: true,
         color: "light-blue darken-1",
         link: "/order-pizza/887c0bcd-5a8f-42d9-be8e-bdd105616923",
         flex: 3,
@@ -54,7 +51,6 @@ export const store = new Vuex.Store({
         id: "887c0bcd-5a8f-42d9-be8e-bdd105616923",
         title: "BBQ Chicken",
         subtitle: "BBQ Sauce, Jack, Ranch Dressing, Red Onions, Roasted Chicken, Cheddar",
-        price: "18",
         prices: ['16','18','20']
       }
     ]

@@ -12,17 +12,14 @@
           <v-card-text>
             <v-container grid-list-md>
               <v-layout wrap>
-
                 <div class="order-img-center">
                   <img
                     class="pizza-order-img"
                     :src="getImgUrl(pizza.src)" />
                 </div>
-
                 <!--<v-flex xs12>-->
                   <!--<v-text-field label="Address" required></v-text-field>-->
                 <!--</v-flex>-->
-
                 <v-flex xs12 sm5>
                   <v-select
                     label="Size"
@@ -31,9 +28,7 @@
                     :items="['Small', 'Medium', 'Large']"
                   ></v-select>
                 </v-flex>
-
                 <v-spacer></v-spacer>
-
                 <v-flex xs12 sm5>
                   <v-select
                     label="Amount"
@@ -41,12 +36,9 @@
                     autocomplete
                     :items="['1', '2', '3', '4', '5', '6', '10']"
                   ></v-select>
-
                 </v-flex>
-
               </v-layout>
             </v-container>
-
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -92,8 +84,9 @@
         return this.$router.push('/');
       },
       getImgUrl(pic) {
-        if(!pic) return;
-        return require(`@/assets/${pic}`);
+        if(pic) {
+          return require(`@/assets/${pic}`);
+        }
       }
     }
   }
