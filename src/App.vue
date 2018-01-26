@@ -4,6 +4,7 @@
     <!--<div style="display: none">{{ msg }}</div>-->
 
     <tool-bar-ctrl
+      class="app-header"
       :provider_logo="company.logo"
       :user_name="user.name"
     />
@@ -18,7 +19,7 @@
     </main>
 
     <v-footer
-      class="pa-3">
+      class="app-footer pa-3">
       <v-spacer />
       <div>Pizza Inc. © {{ new Date().getFullYear() }}</div>
     </v-footer>
@@ -55,6 +56,11 @@ export default {
 </script>
 
 <style>
+
+  .app-header,
+  .app-footer {
+    z-index: 99;
+  }
 
   .app-style {
     display: block;

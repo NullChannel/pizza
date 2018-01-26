@@ -1,8 +1,8 @@
 <template>
 
-  <v-container class="background-pizza">
+  <v-container>
 
-    <img src="../assets/bk-6.jpg" class="bg" />
+    <img src="../assets/p4.jpg" class="bg" />
 
     <v-layout column>
 
@@ -119,28 +119,17 @@ export default {
 
 <style >
 
- img.bg {
-    /*min-height: 100%;*/
-    /*min-width: 1024px;*/
-    width: 100%;
-    height: auto;
-    position: fixed;
-    top: 0;
-    left: 0;
- }
-
-.background-pizza {
-  /*background-image: url("../assets/bk-6.jpg");*/
-  /*width: 100%;*/
-  /*height: 100vh;*/
-  /*background-repeat: no-repeat;*/
-  /*background-size: cover;*/
+img.bg {
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .description {
   display: block;
   min-height: 63px;
-  /*height: 96px;*/
 }
 
 .card__media__background {
@@ -154,11 +143,5 @@ export default {
   font-size: 36px;
   text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.9);
 }
-
-/*.action {*/
-  /*position: absolute;*/
-  /*top: 12px;*/
-/*}*/
-
 
 </style>
