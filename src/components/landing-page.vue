@@ -1,6 +1,8 @@
 <template>
 
-  <v-container>
+  <v-container class="background-pizza">
+
+    <img src="../assets/bk-6.jpg" class="bg" />
 
     <v-layout column>
 
@@ -26,7 +28,7 @@
                 <div>
                   <div class="headline">{{ page.title }}</div>
                   <span class="description white--text">{{ page.subtitle }}</span>
-                  <span class="price" >{{ page.price }}</span>
+                  <span class="price" >${{ page.prices[1] }}</span>
                 </div>
               </v-card-title>
               <v-card-actions class="action">
@@ -116,6 +118,25 @@ export default {
 </script>
 
 <style >
+
+ img.bg {
+    /*min-height: 100%;*/
+    /*min-width: 1024px;*/
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+ }
+
+.background-pizza {
+  /*background-image: url("../assets/bk-6.jpg");*/
+  /*width: 100%;*/
+  /*height: 100vh;*/
+  /*background-repeat: no-repeat;*/
+  /*background-size: cover;*/
+}
+
 .description {
   display: block;
   min-height: 63px;
@@ -130,7 +151,7 @@ export default {
   position: absolute;
   bottom: 3px;
   right: 12px;
-  font-size: 42px;
+  font-size: 36px;
   text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.9);
 }
 
