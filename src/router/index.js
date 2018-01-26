@@ -14,7 +14,7 @@ export default new Router({
       component: LandingPage
     },
     {
-      path: '/order-pizza/',
+      path: '/order-pizza/:id',
       name: 'OrderPizza',
       component: OrderPizza
     }

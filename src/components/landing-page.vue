@@ -50,17 +50,14 @@
 <script>
 export default {
   name: "HomePage",
+  /*
   data() {
     return {
-      msg: "Home page",
-      showAlert: false,
-      showAnalysis: false,
-      showInfo: false,
       pages: [
         {
           color: "orange darken-1",
           show_info: false,
-          link: "/order/8053cc44-5efd-4f89-b327-4c98431fd58a",
+          link: "/order-pizza/8053cc44-5efd-4f89-b327-4c98431fd58a",
           flex: 3,
           src: "p-1.png",
           id: "8053cc44-5efd-4f89-b327-4c98431fd58a",
@@ -71,7 +68,7 @@ export default {
         {
           enable: true,
           color: "deep-purple darken-1",
-          link: "/order/9b9ebe22-6951-4d13-b6f3-e8fcb11bac02",
+          link: "/order-pizza/9b9ebe22-6951-4d13-b6f3-e8fcb11bac02",
           flex: 3,
           src: "p-2.png",
           id: "9b9ebe22-6951-4d13-b6f3-e8fcb11bac02",
@@ -82,7 +79,7 @@ export default {
         {
           enable: true,
           color: "teal darken-1",
-          link: "/new-alerts",
+          link: "/order-pizza/887c0bcd-5a8f-42d9-be8e-bdd10561698f",
           flex: 3,
           src: "p-3.png",
           id: "887c0bcd-5a8f-42d9-be8e-bdd10561698f",
@@ -93,7 +90,7 @@ export default {
         {
           enable: true,
           color: "light-blue darken-1",
-          link: "/order/887c0bcd-5a8f-42d9-be8e-bdd105616923",
+          link: "/order-pizza/887c0bcd-5a8f-42d9-be8e-bdd105616923",
           flex: 3,
           src: "p-4.png",
           id: "887c0bcd-5a8f-42d9-be8e-bdd105616923",
@@ -103,6 +100,12 @@ export default {
         }
       ]
     };
+  },
+  */
+  computed: {
+    pages() {
+      return this.$store.getters.getPizzas;
+    }
   },
   methods: {
     getImgUrl(pic) {
@@ -128,7 +131,7 @@ export default {
   bottom: 3px;
   right: 12px;
   font-size: 42px;
-   text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.6);
+  text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.9);
 }
 
 /*.action {*/
