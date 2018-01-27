@@ -1,6 +1,7 @@
 
 const fs      = require('fs'),
       http    = require('http'),
+      cors    = require('cors'),
       bodyParser  = require('body-parser'),
       dt      = require('./data/data-crud'),
       qstring = require('querystring'),
@@ -29,20 +30,22 @@ fs.readFile( __dirname + '/config.json', function (err, data) {
    }
 });
 
+app.use(cors());
 app.use(bodyParser.json());
 
 // ----------------------------------------------------------------- Requests
 
-// curl -H "Content-Type: application/json" -X POST -d '{"username":"admin","password":"admin"}' http://0.0.0.0:1437/login
+// curl -H "Content-Type: application/json" -X POST -d '{"name":"admin","pwd":"admin"}' http://0.0.0.0:1437/login
 app.post('/login', (req, res) => {
 
   let response = {};
 
-  // I didn't use any crypto library !
-  const user = req.body.username;
-  const pwd  = req.body.password;
+  const name = req.body.user;
+  const pwd  = req.body.pwd;
 
-  if( user === 'admin' && pwd === 'admin') {
+  // I didn't use any crypto library !
+
+  if( name === 'admin' && pwd === 'admin') {
 
     dt.getPizzasRoutine( response => {
       res.json(response);

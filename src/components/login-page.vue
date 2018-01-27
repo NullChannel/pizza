@@ -48,14 +48,14 @@
 
 <script>
 
-  import ProgressBarCtrl from "./progress-bar-ctrl";
+  import ProgressBarCtrl from "./progress-bar-ctrl"
+  import ServerProxy from "../proxy/server-proxy.js"
 
   export default {
     name: "LoginPage",
       components: {
-
-    ProgressBarCtrl
-  },
+        ProgressBarCtrl
+    },
     computed: {
 //      pizza() {
 //        return this.$store.getters.getPizza( this.id )
@@ -63,8 +63,11 @@
     },
     data () {
       return {
+        name: "",
+        pwd: "",
         dialog: true,
-        startLoginRoutine: false
+        startLoginRoutine: false,
+        serverProxy: null
       }
     },
     methods: {
@@ -74,7 +77,28 @@
       },
       onLogin() {
         this.dialog = false;
-        //return this.$router.push('/');
+
+        if( !this.serverProxy ) {
+          this.serverProxy = new ServerProxy();
+        }
+
+        console.log( `user,pwd: ${this.name} - ${this.pwd}`);
+
+        this.startLoginRoutine = true;
+
+        this.serverProxy.userLogin( this.name, this.pwd, res => {
+
+          this.startLoginRoutine = false;
+
+          if(res.status === 'fail') {
+            // show error message
+            return this.$router.push('/');
+          }
+          if(res.status === 'success') {
+            console.log(res.data.payload);
+            return this.$router.push('/');
+          }
+        });
       },
       getImgUrl(pic) {
         if(pic) {
