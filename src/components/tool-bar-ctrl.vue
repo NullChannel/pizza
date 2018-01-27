@@ -13,14 +13,13 @@
       </v-toolbar-title>
       <v-spacer/>
       <div>
-        <span class="body-1">{{ user_name }}</span>
         <v-btn
           color="blue"
           fab
           small
           @click="onLogin"
           dark>
-          <v-icon>exit_to_app</v-icon>
+          <v-icon>account_circle</v-icon>
         </v-btn>
       </div>
     </v-toolbar>
@@ -31,8 +30,7 @@
 <script>
 export default {
   name: "ToolbarCtrl",
-  props: ["provider_logo", "user_name"],
-
+  props: ["provider_logo"],
   data() {
     return {
     };
