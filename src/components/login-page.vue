@@ -59,7 +59,7 @@
     data () {
       return {
         name: "admin",
-        pwd: "admin",
+        pwd: "_admin",
         dialog: true,
         startLoginRoutine: false,
         serverProxy: null
@@ -90,8 +90,9 @@
           this.startLoginRoutine = false;
 
           if(res.status === 'fail') {
-            // show error message
-            return this.$router.push('/');
+            this.$store.dispatch("setMessage", res.status.error );
+            this.$store.dispatch("setMessageImage", 'p1.jpg' );
+            return this.$router.push('/message-page');
           }
           if(res.status === 'success') {
             console.log(res.data.payload);

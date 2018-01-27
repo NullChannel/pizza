@@ -37,7 +37,6 @@ export default {
   },
   methods: {
     onLogin() {
-      console.log("onListItemClick");
       return this.$router.push('/login-page');
     },
     getImgUrl(pic) {

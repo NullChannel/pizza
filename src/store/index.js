@@ -47,7 +47,9 @@ export const store = new Vuex.Store({
         subtitle: "BBQ Sauce, Jack, Ranch Dressing, Red Onions, Roasted Chicken, Cheddar",
         prices: ['16','18','20']
       }
-    ]
+    ],
+    message: '',
+    message_image: ''
   },
 
   mutations: {
@@ -58,6 +60,14 @@ export const store = new Vuex.Store({
 
     setPizzas(state, payload) {
       state.pizzas = payload;
+    },
+
+    setMessage(state, payload) {
+       state.message = payload;
+    },
+
+    setMessageImage(state, payload ) {
+      state.message_image = payload;
     }
   },
 
@@ -65,6 +75,14 @@ export const store = new Vuex.Store({
 
     setPizzas(context, pizzas ) {
       context.commit('setPizzas', pizzas );
+    },
+
+    setMessage(context, msg) {
+      context.commit('setMessage', msg);
+    },
+
+    setMessageImage(context, image ) {
+      context.commit('setMessageImage', image );
     }
   },
 
@@ -80,7 +98,15 @@ export const store = new Vuex.Store({
           return pizza.id === pizza_id
         })
       }
-    }
+    },
+
+    getMessage(state) {
+      return state.message;
+    },
+
+    getMessageImage(state) {
+      return state.message_image;
+    },
   }
 });
 
