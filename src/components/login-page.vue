@@ -56,11 +56,6 @@
       components: {
         ProgressBarCtrl
     },
-    computed: {
-//      pizza() {
-//        return this.$store.getters.getPizza( this.id )
-//      }
-    },
     data () {
       return {
         name: "admin",
@@ -70,6 +65,14 @@
         serverProxy: null
       }
     },
+    created: function () {
+        this.serverProxy = new ServerProxy();
+    },
+    computed: {
+//      pizza() {
+//        return this.$store.getters.getPizza( this.id )
+//      }
+    },
     methods: {
       onClose() {
         this.dialog = false;
@@ -77,10 +80,6 @@
       },
       onLogin() {
         this.dialog = false;
-
-        if( !this.serverProxy ) {
-          this.serverProxy = new ServerProxy();
-        }
 
         console.log( `user,pwd: ${this.name} - ${this.pwd}`);
 
@@ -96,6 +95,7 @@
           }
           if(res.status === 'success') {
             console.log(res.data.payload);
+            this.$store.dispatch('setPizzas', res.data.payload );
             return this.$router.push('/');
           }
         });

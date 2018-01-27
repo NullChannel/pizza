@@ -5,12 +5,6 @@ Vue.use( Vuex );
 
 export const store = new Vuex.Store({
   state: {
-    serverProxy: null,  // pointer to server proxy object, create once and use per session
-    session_token: '222339ba-8e4e-4489-85fe-2b1862f0f222',
-    user: {
-      // 3:20 min
-      //https://www.youtube.com/watch?v=GcyjaJZaVLg&index=9&list=PL55RiY5tL51qxUbODJG9cgrsVd7ZHbPrt
-    },
     pizzas: [
       {
         color: "orange darken-1",
@@ -56,43 +50,25 @@ export const store = new Vuex.Store({
     ]
   },
 
-  mutations: {  // for change state
+  mutations: {
 
     setUser(state, payload) {
       state.user = payload;
     },
 
-
+    setPizzas(state, payload) {
+      state.pizzas = payload;
+    }
   },
 
-  actions: {     // to dispatch mutation
+  actions: {
 
-    // call from any components: this.$store.dispatch('createToDo', { id: '12we344' });
-
-    // https://alligator.io/vuejs/intro-to-vuex/ - async
-    loadUser: async function (context) {
-      if (!context.state.serverProxy) {
-        context.state.serverProxy = new ServerProxy();
-      }
-
-      let response = await context.state.serverProxy.getUser();
-      //console.log('store.action(loadUser): ', response.user );
-      context.commit('setUser', response.user );
-    },
-
-
+    setPizzas(context, pizzas ) {
+      context.commit('setPizzas', pizzas );
+    }
   },
 
-  getters: {    // get store value from components
-
-    // call from any components: this.$store.getters.getUser;
-    // getUser(state) {
-    //   return state.user;
-    // },
-    //
-    // getServerProxy(state) {
-    //   return state.serverProxy;
-    // },
+  getters: {
 
     getPizzas( state ) {
       return state.pizzas;
