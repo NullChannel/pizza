@@ -3,6 +3,8 @@ const fs      = require('fs'),
       http    = require('http'),
       bodyParser  = require('body-parser'),
       dt      = require('./data/data-crud'),
+      qstring = require('querystring'),
+      url     = require('url'),
       express = require('express');
 
 const app    = express(),
@@ -36,47 +38,18 @@ app.post('/login', (req, res) => {
 
   let response = {};
 
-  let request = {
-    name: req.body.username,
-    pwd:  req.body.password
-  };
+  // don't use any crypto library
+  const user = req.body.username;
+  const pwd  = req.body.password;
 
-  console.log( request );
-
-  if(request.name === 'admin' && request.pwd === 'admin') {
-
-    /*
-    dt.getPizzas(( err, data ) => {
-
-      if( err ) {
-
-        response = {
-          status: "fail",
-          data: null,
-          error: err
-        };
-      }
-      else {
-
-        response = {
-          status: "success",
-          data: {
-            amount: data.length,
-            payload: data
-          },
-          error: null
-        };
-      }
-
-      res.json(response);
-    });
-    */
+  if( user === 'admin' && pwd === 'admin') {
 
     dt.getPizzasRoutine( response => {
       res.json(response);
     });
   }
   else {
+
     response = {
       status: "fail",
       data: null,
@@ -85,16 +58,29 @@ app.post('/login', (req, res) => {
 
     res.json(response);
   }
-
 });
 
 app.get('/get-pizzas', ( req, res ) => {
 
-  //let response = {};
+  dt.getPizzasRoutine( response => {
+    res.json(response);
+  });
+});
 
-  /*
+// curl http://0.0.0.0:1437/update-pizzas/?payload=[{"pizza":"pepperoni","price":"15"},{"pizza":"ascona","price":"18"}]
+app.get('/update-pizzas', ( req, res ) => {
 
-  dt.getPizzas(( err, data ) => {
+  console.log('/update-pizzas: START');
+
+  const query = qstring.parse(url.parse(req.url).query);
+
+  let response = {};
+
+  let payload = query['payload'];
+
+  console.log('/update-pizzas[payload]: ', payload );
+
+  dt.updatePizzas( payload, (err, data ) => {
 
     if( err ) {
 
@@ -108,23 +94,15 @@ app.get('/get-pizzas', ( req, res ) => {
 
       response = {
         status: "success",
-        data: {
-          amount: data.length,
-          payload: data
-        },
+        data: {},
         error: null
       };
     }
 
-    res.json(response);
+    res.send(response);
   });
-  */
-
-  dt.getPizzasRoutine( response => {
-    res.json(response);
-  });
-
 });
+
 
 
 // ----------------------------------------------------------------- Express Error

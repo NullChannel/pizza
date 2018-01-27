@@ -3,11 +3,10 @@ var fs = require('fs');
 function getPizzas( callback ) {
    try {
 
-      const folder = __dirname + '/pizzas.json';
+      const file = __dirname + '/pizzas.json';
 
-      fs.readFile( folder, function (err, data) {
+      fs.readFile( file, function (err, data) {
          if( err ) {
-            console.log("Error open resource file", err.message);
             return callback(err, null);
          }
          else {
@@ -51,25 +50,33 @@ function getPizzasRoutine( callback ) {
   });
 }
 
-function updatePizzas( callback ) {
-   try {
+function updatePizzas( data, callback ) {
+  try {
 
-      const folder = __dirname + 'pizzas.json';
+    //const folder = __dirname + '/pizzas.json';
+    const file = __dirname + '/users.json';
 
-      fs.readFile( folder, function (err, data) {
-         if( err ) {
-            console.log("Error open resource file", err.message);
-            return callback(err, null);
-         }
-         else {
-            const content = JSON.parse(data);
-            return callback(err, content);
-         }
+    fs.stat( file, (err, stats) => {
+      if(err) {
+        return callback( err, null );
+      }
+
+      fs.unlink(file, err => {
+        if(err) return callback( err, null );
+
+        fs.writeFile( file, data, 'utf-8', function(err) {
+          if (err) {
+            return callback( err, null );
+          }
+          return callback( null, {} );
+        });
       });
-   }
-   catch(err) {
-      console.log('ERROR(data-crud.updatePizzas())' + err );
-   }
+    });
+  }
+  catch(err) {
+    console.log('ERROR(data-crud.updatePizzas())' + err );
+    return callback( 'Fail to update json file', null );
+  }
 }
 
 module.exports.getPizzas = getPizzas;
