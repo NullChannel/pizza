@@ -38,7 +38,7 @@ app.post('/login', (req, res) => {
 
   let response = {};
 
-  // don't use any crypto library
+  // I didn't use any crypto library !
   const user = req.body.username;
   const pwd  = req.body.password;
 
@@ -104,14 +104,12 @@ app.get('/update-pizzas', ( req, res ) => {
 });
 
 
-
 // ----------------------------------------------------------------- Express Error
 
 // for 404
 app.use(function(req, res, next) {
    res.send(404, "Sorry we don't find that");
 });
-
 
 app.use(function(err, req, res, next) {
    // NODE_ENV = 'production'
