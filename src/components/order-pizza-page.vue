@@ -4,6 +4,7 @@
       <img src="../assets/p3.jpg" class="bg" />
 
       <v-dialog v-model="dialog" persistent max-width="500px">
+        <!--<v-card :color="pizza.color" >-->
         <v-card>
           <v-card-title>
             <span class="headline order-pizza-title">Pizza</span>
@@ -61,6 +62,7 @@
 
 <script>
   export default {
+    name: "OrderPizzaPage",
     props: ['id'],
     computed: {
       pizza() {
@@ -110,7 +112,7 @@ img.bg {
   }
 
   .order-pizza-title {
-    font-size: 18px !important;
+    font-size: 15px !important;
   }
 
   .pizza-order-name  {
@@ -118,7 +120,4 @@ img.bg {
     font-size: 24px;
   }
 
-  .card {
-    box-shadow: 6px 6px 9px rgba(0, 0, 0, 0.3) !important;
-  }
 </style>

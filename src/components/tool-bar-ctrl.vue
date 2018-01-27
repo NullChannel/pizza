@@ -18,6 +18,7 @@
           color="blue"
           fab
           small
+          @click="onLogin"
           dark>
           <v-icon>exit_to_app</v-icon>
         </v-btn>
@@ -34,35 +35,13 @@ export default {
 
   data() {
     return {
-//      pages: [
-//        {
-//          icon: "library_books",
-//          title: "Alerts",
-//          link: "/alerts"
-//        },
-//        {
-//          icon: "recent_actors",
-//          title: "Measurement",
-//          link: "/measurement"
-//        },
-//        {
-//          icon: "notifications_active",
-//          title: "New Alerts",
-//          link: "/new-alerts"
-//        },
-//        {
-//          icon: "share",
-//          title: "DC Push",
-//          link: "/dc-push"
-//        }
-//      ]
     };
   },
   methods: {
-    onListItemClick() {
+    onLogin() {
       console.log("onListItemClick");
+      return this.$router.push('/login-page');
     },
-    // https://stackoverflow.com/questions/40491506/vue-js-dynamic-images-not-working
     getImgUrl(pic) {
       if(!pic) return;
       return require("../assets/" + pic);
