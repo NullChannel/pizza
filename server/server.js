@@ -40,8 +40,10 @@ app.post('/login', (req, res) => {
 
   let response = {};
 
-  const name = req.body.user;
+  const name = req.body.name;
   const pwd  = req.body.pwd;
+
+  console.log( `server(/login[name,pwd]): ${name} - ${pwd}`);
 
   // I didn't use any crypto library !
 

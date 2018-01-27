@@ -63,8 +63,8 @@
     },
     data () {
       return {
-        name: "",
-        pwd: "",
+        name: "admin",
+        pwd: "admin",
         dialog: true,
         startLoginRoutine: false,
         serverProxy: null

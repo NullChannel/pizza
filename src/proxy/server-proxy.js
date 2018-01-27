@@ -28,7 +28,11 @@ export default class ServerProxy {
 
   userLogin( name, pwd, callback ) {
 
-   let domain  = 'http://0.0.0.0:1437';
+    // for emulate progress-bar visibility
+
+    setTimeout(() => {
+
+         let domain  = 'http://0.0.0.0:1437';
    let api     = '/login';
    let pathUrl = `${domain}${api}`;
 
@@ -61,5 +65,9 @@ export default class ServerProxy {
           error: error
         });
      });
+
+    }, 1000);
+
+
   }
 }
