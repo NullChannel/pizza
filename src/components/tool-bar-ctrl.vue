@@ -49,9 +49,7 @@ export default {
 </script>
 
 <style scoped>
-.drawer-bkgr {
-  background-color: #1e88e5 !important;
-}
+
 .provider-logo {
   height: 30px;
   margin-left: 9px;
