@@ -53,8 +53,7 @@ function getPizzasRoutine( callback ) {
 function updatePizzas( data, callback ) {
   try {
 
-    //const folder = __dirname + '/pizzas.json';
-    const file = __dirname + '/users.json';
+    const file = __dirname + '/pizzas-tmp.json';
 
     fs.stat( file, (err, stats) => {
       if(err) {
