@@ -21,6 +21,36 @@ function getPizzas( callback ) {
    }
 }
 
+function getPizzasRoutine( callback ) {
+
+  let response = {};
+
+  this.getPizzas(( err, data ) => {
+
+    if( err ) {
+
+      response = {
+        status: "fail",
+        data: null,
+        error: err
+      };
+    }
+    else {
+
+      response = {
+        status: "success",
+        data: {
+          amount: data.length,
+          payload: data
+        },
+        error: null
+      };
+    }
+
+    return callback( response );
+  });
+}
+
 function updatePizzas( callback ) {
    try {
 
@@ -28,7 +58,7 @@ function updatePizzas( callback ) {
 
       fs.readFile( folder, function (err, data) {
          if( err ) {
-            writeLog("Error open resource file", err.message);
+            console.log("Error open resource file", err.message);
             return callback(err, null);
          }
          else {
@@ -44,3 +74,4 @@ function updatePizzas( callback ) {
 
 module.exports.getPizzas = getPizzas;
 module.exports.updatePizzas = updatePizzas;
+module.exports.getPizzasRoutine = getPizzasRoutine;

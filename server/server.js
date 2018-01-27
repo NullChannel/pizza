@@ -31,9 +31,68 @@ app.use(bodyParser.json());
 
 // ----------------------------------------------------------------- Requests
 
-app.get('/get-pizzas', ( req, res ) => {
+// curl -H "Content-Type: application/json" -X POST -d '{"username":"admin","password":"admin"}' http://0.0.0.0:1437/login
+app.post('/login', (req, res) => {
 
   let response = {};
+
+  let request = {
+    name: req.body.username,
+    pwd:  req.body.password
+  };
+
+  console.log( request );
+
+  if(request.name === 'admin' && request.pwd === 'admin') {
+
+    /*
+    dt.getPizzas(( err, data ) => {
+
+      if( err ) {
+
+        response = {
+          status: "fail",
+          data: null,
+          error: err
+        };
+      }
+      else {
+
+        response = {
+          status: "success",
+          data: {
+            amount: data.length,
+            payload: data
+          },
+          error: null
+        };
+      }
+
+      res.json(response);
+    });
+    */
+
+    dt.getPizzasRoutine( response => {
+      res.json(response);
+    });
+  }
+  else {
+    response = {
+      status: "fail",
+      data: null,
+      error: "Name or password is not correct"
+    };
+
+    res.json(response);
+  }
+
+});
+
+app.get('/get-pizzas', ( req, res ) => {
+
+  //let response = {};
+
+  /*
 
   dt.getPizzas(( err, data ) => {
 
@@ -58,7 +117,13 @@ app.get('/get-pizzas', ( req, res ) => {
     }
 
     res.json(response);
-  })
+  });
+  */
+
+  dt.getPizzasRoutine( response => {
+    res.json(response);
+  });
+
 });
 
 
