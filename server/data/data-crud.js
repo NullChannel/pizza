@@ -3,11 +3,11 @@ var fs = require('fs');
 function getPizzas( callback ) {
    try {
 
-      const folder = __dirname + 'pizzas.json';
+      const folder = __dirname + '/pizzas.json';
 
       fs.readFile( folder, function (err, data) {
          if( err ) {
-            writeLog("Error open resource file", err.message);
+            console.log("Error open resource file", err.message);
             return callback(err, null);
          }
          else {

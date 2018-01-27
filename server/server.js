@@ -31,6 +31,36 @@ app.use(bodyParser.json());
 
 // ----------------------------------------------------------------- Requests
 
+app.get('/get-pizzas', ( req, res ) => {
+
+  let response = {};
+
+  dt.getPizzas(( err, data ) => {
+
+    if( err ) {
+
+      response = {
+        status: "fail",
+        data: null,
+        error: err
+      };
+    }
+    else {
+
+      response = {
+        status: "success",
+        data: {
+          amount: data.length,
+          payload: data
+        },
+        error: null
+      };
+    }
+
+    res.json(response);
+  })
+});
+
 
 // ----------------------------------------------------------------- Express Error
 
