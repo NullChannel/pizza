@@ -19,6 +19,7 @@ import {
   VCard,
   VTextField,
   VSelect,
+  VProgressCircular,
   VDialog
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
@@ -37,6 +38,7 @@ Vue.use(Vuetify, {
     VCard,
     VTextField,
     VSelect,
+    VProgressCircular,
     VDialog
   },
   theme: {

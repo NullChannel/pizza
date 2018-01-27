@@ -3,6 +3,10 @@
 
       <img src="../assets/p1.jpg" class="bg" />
 
+      <progress-bar-ctrl
+        v-show="startLoginRoutine"
+      />
+
       <v-dialog v-model="dialog" persistent max-width="500px">
         <v-card>
           <v-card-title>
@@ -43,8 +47,15 @@
 </template>
 
 <script>
+
+  import ProgressBarCtrl from "./progress-bar-ctrl";
+
   export default {
     name: "LoginPage",
+      components: {
+
+    ProgressBarCtrl
+  },
     computed: {
 //      pizza() {
 //        return this.$store.getters.getPizza( this.id )
@@ -52,7 +63,8 @@
     },
     data () {
       return {
-        dialog: true
+        dialog: true,
+        startLoginRoutine: false
       }
     },
     methods: {
@@ -60,7 +72,7 @@
         this.dialog = false;
         return this.$router.push('/');
       },
-      onOrder() {
+      onLogin() {
         this.dialog = false;
         //return this.$router.push('/');
       },
