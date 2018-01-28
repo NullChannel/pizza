@@ -36,11 +36,16 @@
           -->
 
             <v-card-title>
+              <div>
+                <h3 class="headline mb-0">Change Price of Pizzas</h3>
+              </div>
             </v-card-title>
 
             <v-data-table
               v-bind:headers="headers"
               v-bind:items="items"
+
+              hide-actions
             >
             <template slot="headerCell" slot-scope="props">
 
@@ -73,6 +78,13 @@
             </template>
 
           </v-data-table>
+
+          <v-spacer></v-spacer>
+
+           <v-card-actions>
+            <v-btn flat color="blue">Cancel</v-btn>
+            <v-btn flat color="blue">Submit</v-btn>
+          </v-card-actions>
 
         </v-card>
       </v-flex>
@@ -177,19 +189,24 @@
   margin-left: 50%;
   padding: 0 !important;
 }
-.data-table-editable input {
-  width: 36px;
-  font-size: 12px !important;
+/*.data-table-editable input {*/
+  /*width: 36px;*/
+  /*font-size: 12px !important;*/
+  /*text-align: center;*/
+  /*height: 24px;*/
+/*}*/
+/*.data-table-editable .input-group__details {*/
+  /*!*display: none;*!*/
+  /*min-height: 0 !important;*/
+      /*width: 36px !important;*/
+/*}*/
+.data-table-editable  .input-group--text-field input {
   text-align: center;
-  height: 24px;
 }
-.data-table-editable .input-group__details {
-  /*display: none;*/
-  min-height: 0 !important;
-      width: 36px;
-}
+
 .data-table-editable .input-group__input {
   min-height: 0;
-    width: 36px;
+  width: 36px;
+  text-align: center;
 }
 </style>
