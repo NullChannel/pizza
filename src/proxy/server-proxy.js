@@ -23,7 +23,7 @@ export default class ServerProxy {
               });
             }
           });
-      }, 600);
+      }, 1100);
     });
   }
 

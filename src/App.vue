@@ -2,17 +2,22 @@
   <v-app class="app-style">
 
     <tool-bar-ctrl
+      v-show="isLoaded"
       class="app-header"
       :provider_logo="company.logo"
     />
 
-    <progress-bar-ctrl v-show="!isPizzasLoaded" />
+    <progress-bar-ctrl
+      v-show="!isLoaded" />
 
-    <main class="grey lighten-1">
+    <main
+      v-if="isLoaded"
+      class="grey lighten-1">
       <router-view/>
     </main>
 
     <v-footer
+      v-if="isLoaded"
       class="app-footer pa-3">
       <v-spacer />
       <div>Pizza Inc. © {{ new Date().getFullYear() }}</div>
@@ -33,23 +38,18 @@ export default {
     ToolBarCtrl,
     ProgressBarCtrl
   },
-//  created: function () {
-//    this.serverProxy = new ServerProxy();
-//  },
   mounted: async function() {
     const serverProxy = new ServerProxy();
-
     let response = await serverProxy.loadPizzas();
     if( response !== null ) {
       this.$store.dispatch("setPizzas", response.pizzas );
-      this.isPizzasLoaded = true;
+      this.isLoaded = true;
     }
   },
   data() {
     return {
+      isLoaded: false,
       company: {
-        serverProxy: null,
-        isPizzasLoaded: false,
         name: "Pizza Inc.",
         logo: "pizza-logo.png"
       }
