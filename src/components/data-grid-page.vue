@@ -6,35 +6,6 @@
       <v-flex xs12 >
         <v-card>
 
-          <!--
-
-          <v-data-table
-        v-bind:headers="headers"
-        :items="items"
-        class="elevation-1"
-
-          >
-            <template slot="headerCell" slot-scope="props">
-              <v-tooltip bottom>
-                <span slot="activator">
-                  {{ props.header.text }}
-                </span>
-                <span>
-                  {{ props.header.text }}
-                </span>
-              </v-tooltip>
-            </template>
-            <template slot="items" slot-scope="props">
-              <td>{{ props.item.name }}</td>
-              <td class="text-xs-right">{{ props.item.calories }}</td>
-              <td class="text-xs-right">{{ props.item.fat }}</td>
-              <td class="text-xs-right">{{ props.item.carbs }}</td>
-              <td class="text-xs-right">{{ props.item.protein }}</td>
-              <td class="text-xs-right">{{ props.item.sodium }}</td>
-            </template>
-          </v-data-table>
-          -->
-
             <v-card-title>
               <div>
                 <h3 class="headline mb-0">Change Price of Pizzas</h3>
@@ -44,7 +15,7 @@
             <v-data-table
               v-bind:headers="headers"
               v-bind:items="items"
-
+              class="table-main "
               hide-actions
             >
             <template slot="headerCell" slot-scope="props">
@@ -200,6 +171,11 @@
 </script>
 
 <style>
+  .table-main {
+    padding: 18px;
+    width: 96%;
+    margin: auto;
+  }
 
   .data-table-editable {
     width: 39px !important;
