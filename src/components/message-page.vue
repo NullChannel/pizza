@@ -56,13 +56,21 @@
 
 <style>
 
+  img.bg {
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
   .message-card .card__media__background {
     /*background-size: contain !important;*/
     background-size: 60% !important;
   }
 
   .message-panel {
-  text-align: center;
+    text-align: center;
     width: 100%;
   }
 

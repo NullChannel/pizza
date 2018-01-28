@@ -96,7 +96,7 @@
       onOrder() {
         this.dialog = false;
 
-        const msg = `Order: ${this.default_pizza_amount} - "${this.pizza.title}", Total: $${this.price}`;
+        const msg = `Order: ${this.default_pizza_amount} - "${this.pizza.title}",  Total: $${this.price}`;
         this.$store.dispatch("setMessage", msg );
         this.$store.dispatch("setMessageImage", 'thankyou-2.jpg' );
 
