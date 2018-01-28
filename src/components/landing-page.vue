@@ -131,17 +131,17 @@ export default {
 
   .welcome-to {
     font-family: "Georgia";
-    font-size: 60px;
+    font-size: 69px;
     color: white;
     text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.9);
     position: relative;
     text-align: center;
-    margin-top: -90px;
+    margin-top: -72px;
   }
 
   .pizzas-content {
     display: block;
-    margin-top: 90px;
+    margin-top: 72px;
   }
 
   .description {
