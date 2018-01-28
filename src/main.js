@@ -20,6 +20,7 @@ import {
   VTextField,
   VSelect,
   VProgressCircular,
+  VDataTable,
   VDialog
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
@@ -39,6 +40,7 @@ Vue.use(Vuetify, {
     VTextField,
     VSelect,
     VProgressCircular,
+    VDataTable,
     VDialog
   },
   theme: {
