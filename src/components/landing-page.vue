@@ -12,27 +12,27 @@
           <v-layout row wrap >
 
             <v-flex
-              v-for="page in pages"
-              :key="page.id"
-              v-bind="{ [`md${page.flex}`]: true }"
+              v-for="pizza in pizzas"
+              :key="pizza.id"
+              v-bind="{ [`md${pizza.flex}`]: true }"
               router
             >
             <v-card
               dark
-              :color="page.color" >
+              :color="pizza.color" >
               <v-card-media
-                :src="getImgUrl(page.src)"
+                :src="getImgUrl(pizza.src)"
                 height="180px"
               />
               <v-card-title primary-title>
                 <div>
-                  <div class="headline">{{ page.title }}</div>
-                  <span class="description white--text">{{ page.subtitle }}</span>
-                  <span class="price" >${{ page.prices[1] }}</span>
+                  <div class="headline">{{ pizza.title }}</div>
+                  <span class="description white--text">{{ pizza.subtitle }}</span>
+                  <span class="price" >${{ pizza.prices[1] }}</span>
                 </div>
               </v-card-title>
               <v-card-actions class="action">
-                <v-btn :to="page.link">Order</v-btn>
+                <v-btn :to="pizza.link">Order</v-btn>
               </v-card-actions>
             </v-card>
             </v-flex>
@@ -105,7 +105,7 @@ export default {
   },
   */
   computed: {
-    pages() {
+    pizzas() {
       return this.$store.getters.getPizzas;
     }
   },

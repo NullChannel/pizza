@@ -4,12 +4,12 @@
       <img src="../assets/p3.jpg" class="bg" />
 
       <v-dialog v-model="dialog" persistent max-width="500px">
-        <!--<v-card :color="pizza.color" >-->
         <v-card>
           <v-card-title>
             <span class="headline order-pizza-title">Pizza</span>
-            <span class="pizza-order-name blue--text">"{{ pizza.title }}"</span>
+            <span class="pizza-order-name">"{{ pizza.title }}"</span>
           </v-card-title>
+          <div class="pizza-price">${{ price }}</div>
           <v-card-text>
             <v-container grid-list-md>
               <v-layout wrap>
@@ -18,9 +18,6 @@
                     class="pizza-order-img"
                     :src="getImgUrl(pizza.src)" />
                 </div>
-                <!--<v-flex xs12>-->
-                  <!--<v-text-field label="Address" required></v-text-field>-->
-                <!--</v-flex>-->
                 <v-flex xs12 sm5>
                   <v-select
                     label="Size"
@@ -45,12 +42,12 @@
             <v-spacer></v-spacer>
             <v-btn
               flat
-              color="blue darken-1"
+              color="grey darken-1"
               dark
               @click.native="onClose"
             >Close</v-btn>
             <v-btn
-              color="blue darken-1"
+              color="red darken-1"
               dark
               @click.native="onOrder"
             >Buy</v-btn>
@@ -65,8 +62,23 @@
     name: "OrderPizzaPage",
     props: ['id'],
     computed: {
+      title_color() {
+        return this.pizza.color;
+      },
+      price() {
+        let price = 0;
+
+        console.log('this.pizza:', this.pizza);
+        switch( this.default_pizza_size ) {
+          case 'Small' : price = this.pizza.prices[0]; break;
+          case 'Medium' : price = this.pizza.prices[1]; break;
+          case 'Large' : price = this.pizza.prices[2]; break;
+          default: price = this.pizza.prices[0]; break;
+        }
+        return parseInt( this.default_pizza_amount ) * price;
+      },
       pizza() {
-        return this.$store.getters.getPizza( this.id )
+        return this.$store.getters.getPizza( this.id );
       }
     },
     data () {
@@ -83,7 +95,12 @@
       },
       onOrder() {
         this.dialog = false;
-        return this.$router.push('/');
+
+        const msg = `Order: ${this.default_pizza_amount} - "${this.pizza.title}". Total: $${this.price}`;
+        this.$store.dispatch("setMessage", msg );
+        this.$store.dispatch("setMessageImage", 'thankyou-2.jpg' );
+
+        return this.$router.push('/message-page');
       },
       getImgUrl(pic) {
         if(pic) {
@@ -96,13 +113,22 @@
 
 <style>
 
-img.bg {
-  width: 100%;
-  height: auto;
-  position: fixed;
-  top: 0;
-  left: 0;
-}
+  .pizza-price {
+    position: absolute;
+    top: 15px;
+    right: 33px;
+    font-size: 45px;
+    color: red;
+    text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.6);
+  }
+
+  img.bg {
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
   .order-img-center {
     text-align: center;
     width: 100%;
@@ -112,6 +138,7 @@ img.bg {
   }
 
   .order-pizza-title {
+    color: lightgrey;
     font-size: 15px !important;
   }
 

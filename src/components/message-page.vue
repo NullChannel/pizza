@@ -1,6 +1,8 @@
 <template>
 
-    <v-container>
+  <v-container>
+
+    <img src="../assets/p4.jpg" class="bg" />
 
     <v-layout column>
 
@@ -13,9 +15,9 @@
           >
           </v-card-media>
           <v-card-title>
-            <div>
+            <div class="message-panel">
               <br>
-              <h3 class="headline mb-0">{{ message }}</h3>
+              <h3 class="msg-content headline mb-0">{{ message }}</h3>
             </div>
           </v-card-title>
           <v-card-actions>
@@ -56,6 +58,11 @@
 
   .message-card .card__media__background {
     background-size: contain !important;
+  }
+
+  .message-panel {
+  text-align: center;
+    width: 100%;
   }
 
 </style>
