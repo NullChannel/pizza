@@ -4,15 +4,11 @@
     <tool-bar-ctrl
       class="app-header"
       :provider_logo="company.logo"
-      :user_name="user.name"
     />
 
-    <!--<progress-bar-ctrl-->
-      <!--v-show="!isUserLoaded"-->
-    <!--/>-->
+    <progress-bar-ctrl v-show="!isPizzasLoaded" />
 
-    <main
-      class="grey lighten-1">
+    <main class="grey lighten-1">
       <router-view/>
     </main>
 
@@ -27,28 +23,38 @@
 
 <script>
 
+import ServerProxy from "./proxy/server-proxy"
 import ToolBarCtrl from "./components/tool-bar-ctrl.vue";
 import ProgressBarCtrl from "./components/progress-bar-ctrl";
 
 export default {
+  name: 'App',
   components: {
     ToolBarCtrl,
     ProgressBarCtrl
   },
+//  created: function () {
+//    this.serverProxy = new ServerProxy();
+//  },
+  mounted: async function() {
+    const serverProxy = new ServerProxy();
+
+    let response = await serverProxy.loadPizzas();
+    if( response !== null ) {
+      this.$store.dispatch("setPizzas", response.pizzas );
+      this.isPizzasLoaded = true;
+    }
+  },
   data() {
     return {
-      user: {
-        "id": "222339ba-8e4e-4489-85fe-2b1862f0f430",
-        "name": "Ervin Howell",
-        "role": "user",
-      },
       company: {
+        serverProxy: null,
+        isPizzasLoaded: false,
         name: "Pizza Inc.",
         logo: "pizza-logo.png"
       }
     }
-  },
-  name: 'App'
+  }
 }
 
 </script>
