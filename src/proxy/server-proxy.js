@@ -1,8 +1,7 @@
 
 export default class ServerProxy {
 
-  constructor() {
-  }
+  constructor() {}
 
   async loadPizzas(token = null) {
     return new Promise(resolve => {
@@ -23,7 +22,7 @@ export default class ServerProxy {
               });
             }
           });
-      }, 1100);
+      }, 1500);
     });
   }
 
