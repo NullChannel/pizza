@@ -130,7 +130,8 @@ export default {
   }
 
   .welcome-to {
-    font-size: 45px;
+    font-family: "Georgia";
+    font-size: 60px;
     color: white;
     text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.9);
     position: relative;

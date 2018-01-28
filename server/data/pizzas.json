@@ -7,7 +7,7 @@
     "id": "8053cc44-5efd-4f89-b327-4c98431fd58a",
     "title": "Winter Greens",
     "subtitle": "Lemon Ricotta, Mozzarella, Olive Oil, Pecorino, Radicchio, Roasted Garlic",
-    "prices": ["7.99","9.99","11.99"]
+    "prices": ["7.99","9.99","11"]
   },
   {
     "color": "deep-purple darken-1",
@@ -15,9 +15,9 @@
     "flex": 3,
     "src": "p-2.png",
     "id": "9b9ebe22-6951-4d13-b6f3-e8fcb11bac02",
-    "title": "Cheazy-E",
+    "title": "Cheese",
     "subtitle": "Frisee, Kalamata Olives, Asiago, Mozzarella, Muenster, Tomato Sauce",
-    "prices": ["10.10","12.12","14.14"]
+    "prices": ["10","12","14"]
   },
   {
     "color": "teal darken-1",
@@ -25,7 +25,7 @@
     "flex": 3,
     "src": "p-3.png",
     "id": "887c0bcd-5a8f-42d9-be8e-bdd10561698f",
-    "title": "Thom Be Good",
+    "title": "Pepperoni",
     "subtitle": "Calabrian Chili, Mozzarella, Pepperoni, Roasted Garlic, Sausage, Tomato Sauce",
     "prices": ["13","15","17"]
   },
@@ -37,6 +37,6 @@
     "id": "887c0bcd-5a8f-42d9-be8e-bdd105616923",
     "title": "BBQ Chicken",
     "subtitle": "BBQ Sauce, Jack, Ranch Dressing, Red Onions, Roasted Chicken, Cheddar",
-    "prices": ["16.16","18.81","20.20"]
+    "prices": ["16","18","20"]
   }
 ]
