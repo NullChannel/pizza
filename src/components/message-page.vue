@@ -6,7 +6,7 @@
 
     <v-layout column>
 
-      <v-flex xs12 sm4 offset-sm4>
+      <v-flex xs12 sm5 offset-sm4>
         <v-card>
           <v-card-media
             class="message-card white--text"
