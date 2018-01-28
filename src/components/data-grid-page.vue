@@ -8,7 +8,7 @@
 
             <v-card-title>
               <div>
-                <h3 class="headline mb-0">Change Price of Pizzas</h3>
+                <h3 class="headline mb-0">Change Prices of Pizzas</h3>
               </div>
             </v-card-title>
 
@@ -80,7 +80,9 @@
           { text: '$ Medium', value: 'medium', type: "editable" },
           { text: '$ Large', value: 'large', type: "editable" },
         ],
-        items: [
+        items: this.$store.getters.getPizzas
+          /*[
+
           {
              color : "orange darken-1",
              link : "/order-pizza/8053cc44-5efd-4f89-b327-4c98431fd58a",
@@ -107,7 +109,7 @@
              large: "14",
              prices : ["10","12","14"]
           },
-          /*
+
           {
              color : "teal darken-1",
              link: "/order-pizza/887c0bcd-5a8f-42d9-be8e-bdd10561698f",
@@ -134,8 +136,8 @@
              large: "20",
              prices : ["16","18","20"]
           }
-          */
-        ]
+
+        ]*/
       }
     },
     computed: {
