@@ -59,7 +59,7 @@
     data () {
       return {
         name: "admin",
-        pwd: "_admin",
+        pwd: "admin",
         dialog: true,
         startLoginRoutine: false,
         serverProxy: null
@@ -97,7 +97,7 @@
           if(res.status === 'success') {
             console.log(res.data.payload);
             this.$store.dispatch('setPizzas', res.data.payload );
-            return this.$router.push('/');
+            return this.$router.push('/data-grid-page');
           }
         });
       },

@@ -55,7 +55,8 @@
 
             <template slot="items" slot-scope="props">
 
-              <tr @click="onRowClilck($event,props)">
+              <!--@click="onRowClilck($event,props)"-->
+              <tr >
 
                 <td v-for="(column, index) in headers" :key="index" class="text-xs-right">
 
@@ -82,8 +83,8 @@
           <v-spacer></v-spacer>
 
            <v-card-actions>
-            <v-btn flat color="blue">Cancel</v-btn>
-            <v-btn flat color="blue">Submit</v-btn>
+            <v-btn flat color="blue" @click="OnCancel">Cancel</v-btn>
+            <v-btn flat color="blue" @click="OnUpdate">Update</v-btn>
           </v-card-actions>
 
         </v-card>
@@ -135,6 +136,7 @@
              large: "14",
              prices : ["10","12","14"]
           },
+          /*
           {
              color : "teal darken-1",
              link: "/order-pizza/887c0bcd-5a8f-42d9-be8e-bdd10561698f",
@@ -161,6 +163,7 @@
              large: "20",
              prices : ["16","18","20"]
           }
+          */
         ]
       }
     },
@@ -170,8 +173,22 @@
       }
     },
     methods: {
-      onClickExit() {
+      OnCancel() {
         return this.$router.push('/');
+      },
+      OnUpdate() {
+        this.items.forEach( item => {
+          item.prices = [];
+          item.prices.push( item.small );
+          item.prices.push( item.medium );
+          item.prices.push( item.large );
+        });
+
+        console.log(this.items);
+
+        this.$store.dispatch('setPizzas', this.items );
+
+
       },
       getImgUrl(pic) {
         pic = !pic ? 'attention.png' : pic;
@@ -183,30 +200,27 @@
 </script>
 
 <style>
-.data-table-editable {
-  width: 36px !important;
-  font-size: 12px !important;
-  margin-left: 50%;
-  padding: 0 !important;
-}
-/*.data-table-editable input {*/
-  /*width: 36px;*/
-  /*font-size: 12px !important;*/
-  /*text-align: center;*/
-  /*height: 24px;*/
-/*}*/
-/*.data-table-editable .input-group__details {*/
-  /*!*display: none;*!*/
-  /*min-height: 0 !important;*/
-      /*width: 36px !important;*/
-/*}*/
-.data-table-editable  .input-group--text-field input {
-  text-align: center;
-}
 
-.data-table-editable .input-group__input {
-  min-height: 0;
-  width: 36px;
-  text-align: center;
-}
+  .data-table-editable {
+    width: 39px !important;
+    font-size: 13px !important;
+    margin-left: 50%;
+    padding: 0 !important;
+  }
+
+  .input-group__details {
+    min-height: 9px;
+  }
+
+  .input-group--text-field input {
+    text-align: center;
+      font-size: 13px;
+  }
+
+  .data-table-editable .input-group__input {
+    min-height: 0;
+    width: 39px;
+    text-align: center;
+  }
+
 </style>
