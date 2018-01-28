@@ -91,7 +91,7 @@
 
           if(res.status === 'fail') {
             this.$store.dispatch("setMessage", res.error );
-            this.$store.dispatch("setMessageImage", 'attention-4.png' );
+            this.$store.dispatch("setMessageImage", 'attention.png' );
             return this.$router.push('/message-page');
           }
           if(res.status === 'success') {

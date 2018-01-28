@@ -45,7 +45,7 @@
         return this.$router.push('/');
       },
       getImgUrl(pic) {
-        pic = !pic ? 'attention-4.png' : pic;
+        pic = !pic ? 'attention.png' : pic;
         return require("../assets/" + pic);
       }
     }
