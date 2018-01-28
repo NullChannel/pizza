@@ -6,7 +6,9 @@
 
     <v-layout column>
 
-      <v-flex xs10 offset-sm1>
+      <div class="welcome-to">Welcome to Pizza Inc.</div>
+
+      <v-flex xs10 offset-sm1 class="pizzas-content">
 
         <v-container grid-list-xl >
           <v-layout row wrap >
@@ -119,33 +121,47 @@ export default {
 
 <style >
 
-img.bg {
-  width: 100%;
-  height: auto;
-  position: fixed;
-  top: 0;
-  left: 0;
-}
+  img.bg {
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
 
-.description {
-  display: block;
-  min-height: 63px;
-}
+  .welcome-to {
+    font-size: 45px;
+    color: white;
+    text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.9);
+    position: relative;
+    text-align: center;
+    margin-top: -90px;
+  }
 
-.card__media__background {
-  background-size: contain !important;
-}
+  .pizzas-content {
+    display: block;
+    margin-top: 90px;
+  }
 
-.price {
-  position: absolute;
-  bottom: 3px;
-  right: 12px;
-  font-size: 36px;
-  text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.9);
-}
+  .description {
+    display: block;
+    min-height: 63px;
+  }
 
-.card {
-  box-shadow: 6px 6px 9px rgba(0, 0, 0, 0.3) !important;
-}
+  .card__media__background {
+    background-size: contain !important;
+  }
+
+  .price {
+    position: absolute;
+    bottom: 3px;
+    right: 12px;
+    font-size: 36px;
+    text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.9);
+  }
+
+  .card {
+    box-shadow: 6px 6px 9px rgba(0, 0, 0, 0.3) !important;
+  }
 
 </style>
