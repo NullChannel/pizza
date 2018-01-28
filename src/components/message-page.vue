@@ -4,17 +4,17 @@
 
     <v-layout column>
 
-      <v-flex xs12 sm6 offset-sm3>
+      <v-flex xs12 sm4 offset-sm4>
         <v-card>
           <v-card-media
-            class="white--text"
+            class="message-card white--text"
             height="200px"
-            :src="getImgUrl('p1.jpg')"
+            :src="getImgUrl(this.$store.getters.getMessageImage)"
           >
           </v-card-media>
           <v-card-title>
             <div>
-              <span class="grey--text">{{ current_date }}</span><br>
+              <br>
               <h3 class="headline mb-0">{{ message }}</h3>
             </div>
           </v-card-title>
@@ -38,12 +38,6 @@
     computed: {
       message() {
         return this.$store.getters.getMessage;
-      },
-      message_image() {
-        return this.$store.getters.getMessageImage;
-      },
-      current_date() {
-        return new Date().toLocaleDateString()
       }
     },
     methods: {
@@ -51,10 +45,17 @@
         return this.$router.push('/');
       },
       getImgUrl(pic) {
+        pic = !pic ? 'attention-4.png' : pic;
         return require("../assets/" + pic);
       }
     }
   }
 </script>
 
-<style></style>
+<style>
+
+  .message-card .card__media__background {
+    background-size: contain !important;
+  }
+
+</style>

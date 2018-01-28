@@ -58,7 +58,7 @@ app.post('/login', (req, res) => {
     response = {
       status: "fail",
       data: null,
-      error: "Name or password is not correct"
+      error: "Name or Password is not correct"
     };
 
     res.json(response);

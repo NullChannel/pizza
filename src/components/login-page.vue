@@ -90,8 +90,8 @@
           this.startLoginRoutine = false;
 
           if(res.status === 'fail') {
-            this.$store.dispatch("setMessage", res.status.error );
-            this.$store.dispatch("setMessageImage", 'p1.jpg' );
+            this.$store.dispatch("setMessage", res.error );
+            this.$store.dispatch("setMessageImage", 'attention-4.png' );
             return this.$router.push('/message-page');
           }
           if(res.status === 'success') {
