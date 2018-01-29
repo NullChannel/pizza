@@ -53,8 +53,8 @@
 
   export default {
     name: "LoginPage",
-      components: {
-        ProgressBarCtrl
+    components: {
+      ProgressBarCtrl
     },
     data () {
       return {
@@ -66,7 +66,7 @@
       }
     },
     created: function () {
-        this.serverProxy = new ServerProxy();
+      this.serverProxy = new ServerProxy();
     },
     computed: {
 //      pizza() {
@@ -80,10 +80,9 @@
       },
       onLogin() {
         this.dialog = false;
+        this.startLoginRoutine = true;
 
         console.log( `user,pwd: ${this.name} - ${this.pwd}`);
-
-        this.startLoginRoutine = true;
 
         this.serverProxy.userLogin( this.name, this.pwd, res => {
 
@@ -94,7 +93,7 @@
             this.$store.dispatch("setMessageImage", 'attention.png' );
             return this.$router.push('/message-page');
           }
-          if(res.status === 'success') {
+          else if(res.status === 'success') {
             console.log(res.data.payload);
             this.$store.dispatch('setPizzas', res.data.payload );
             return this.$router.push('/data-grid-page');

@@ -53,7 +53,7 @@ function getPizzasRoutine( callback ) {
 function updatePizzas( data, callback ) {
   try {
 
-    const file = __dirname + '/pizzas-tmp.json';
+    const file = __dirname + '/pizzas.json';
 
     fs.stat( file, (err, stats) => {
       if(err) {
@@ -63,7 +63,7 @@ function updatePizzas( data, callback ) {
       fs.unlink(file, err => {
         if(err) return callback( err, null );
 
-        fs.writeFile( file, data, 'utf-8', function(err) {
+        fs.writeFile( file, JSON.stringify(data), 'utf-8', function(err) {
           if (err) {
             return callback( err, null );
           }

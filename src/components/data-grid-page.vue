@@ -3,7 +3,11 @@
 
       <v-layout column>
 
-      <v-flex xs12 >
+      <progress-bar-ctrl
+        v-show="startUpdateRoutine"
+      />
+
+      <v-flex xs12 v-show="dialog" >
         <v-card>
 
             <v-card-title>
@@ -69,10 +73,19 @@
 
 <script>
 
-    export default {
-    name: "DataGrid",
+import ProgressBarCtrl from "./progress-bar-ctrl"
+import ServerProxy from "../proxy/server-proxy.js"
+
+  export default {
+    name: "DataGridPage",
+    components: {
+      ProgressBarCtrl
+    },
     data() {
       return {
+        dialog: true,
+        startUpdateRoutine: false,
+        serverProxy: null,
         headers: [
           { text: 'Pizza Name', value: 'title', type: "fix" },
           { text: 'Pizza Toppings', value: 'subtitle', type: "fix" },
@@ -81,75 +94,24 @@
           { text: '$ Large', value: 'large', type: "editable" },
         ],
         items: this.$store.getters.getPizzas
-          /*[
-
-          {
-             color : "orange darken-1",
-             link : "/order-pizza/8053cc44-5efd-4f89-b327-4c98431fd58a",
-             flex : 3,
-             src : "p-1.png",
-             id : "8053cc44-5efd-4f89-b327-4c98431fd58a",
-             title : "Winter Greens",
-             subtitle : "Lemon Ricotta, Mozzarella, Olive Oil, Pecorino, Radicchio, Roasted Garlic",
-             small: "7.99",
-             medium: "9.99",
-             large: "11",
-             prices : ["7.99","9.99","11"]
-          },
-          {
-             color : "deep-purple darken-1",
-             link : "/order-pizza/9b9ebe22-6951-4d13-b6f3-e8fcb11bac02",
-             flex : 3,
-             src : "p-2.png",
-             id : "9b9ebe22-6951-4d13-b6f3-e8fcb11bac02",
-             title : "Cheese",
-             subtitle : "Frisee, Kalamata Olives, Asiago, Mozzarella, Muenster, Tomato Sauce",
-             small: "10",
-             medium: "12",
-             large: "14",
-             prices : ["10","12","14"]
-          },
-
-          {
-             color : "teal darken-1",
-             link: "/order-pizza/887c0bcd-5a8f-42d9-be8e-bdd10561698f",
-             flex: 3,
-             src: "p-3.png",
-             id: "887c0bcd-5a8f-42d9-be8e-bdd10561698f",
-             title: "Pepperoni",
-             subtitle: "Calabrian Chili, Mozzarella, Pepperoni, Roasted Garlic, Sausage, Tomato Sauce",
-             small: "13",
-             medium: "15",
-             large: "17",
-             prices: ["13","15","17"]
-          },
-          {
-             color: "light-blue darken-1",
-             link: "/order-pizza/887c0bcd-5a8f-42d9-be8e-bdd105616923",
-             flex: 3,
-             src: "p-4.png",
-             id: "887c0bcd-5a8f-42d9-be8e-bdd105616923",
-             title : "BBQ Chicken",
-             subtitle : "BBQ Sauce, Jack, Ranch Dressing, Red Onions, Roasted Chicken, Cheddar",
-             small: "16",
-             medium: "18",
-             large: "20",
-             prices : ["16","18","20"]
-          }
-
-        ]*/
       }
     },
-    computed: {
-      message() {
-        return this.$store.getters.getMessage;
-      }
+//    computed: {
+//      message() {
+//        return this.$store.getters.getMessage;
+//      }
+//    },
+    created: function () {
+      this.serverProxy = new ServerProxy();
     },
     methods: {
       OnCancel() {
         return this.$router.push('/');
       },
       OnUpdate() {
+        this.dialog = false;
+        this.startUpdateRoutine = true;
+
         this.items.forEach( item => {
           item.prices = [];
           item.prices.push( item.small );
@@ -161,14 +123,27 @@
 
         this.$store.dispatch('setPizzas', this.items );
 
+        this.serverProxy.updatePizzas( this.items, res => {
 
+          if(res.status === 'fail') {
+            this.$store.dispatch("setMessage", res.error );
+            this.$store.dispatch("setMessageImage", 'attention.png' );
+            return this.$router.push('/message-page');
+          }
+          else if(res.status === 'success') {
+            return this.$router.push('/');
+          }
+
+
+
+        });
       },
       getImgUrl(pic) {
         pic = !pic ? 'attention.png' : pic;
         return require("../assets/" + pic);
       }
-    }
   }
+}
 
 </script>
 
