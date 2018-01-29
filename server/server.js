@@ -74,7 +74,6 @@ app.get('/get-pizzas', ( req, res ) => {
 
 // curl http://0.0.0.0:1437/update-pizzas/?payload=[{"pizza":"pepperoni","price":"15"},{"pizza":"ascona","price":"18"}]
 // curl -H "Content-Type: application/json" -X POST -d '[{"pizza":"pepperoni","price":"15"},{"pizza":"ascona","price":"18"}]' http://0.0.0.0:1437/update-pizzas
-//app.get('/update-pizzas', ( req, res ) => {
 app.post('/update-pizzas', ( req, res ) => {
 
   console.log('/update-pizzas: START');

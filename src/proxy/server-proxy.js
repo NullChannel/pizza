@@ -68,8 +68,6 @@ export default class ServerProxy {
 
   userLogin( name, pwd, callback ) {
 
-    // for emulate progress-bar visibility
-
     setTimeout(() => {
 
       let domain  = 'http://0.0.0.0:1437';

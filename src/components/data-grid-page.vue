@@ -7,13 +7,68 @@
         v-show="startUpdateRoutine"
       />
 
-      <v-flex xs12 v-show="dialog" >
+
+      <v-dialog v-model="analysis_dlg" persistent max-width="500px">
+        <!--<v-btn color="primary" dark slot="activator">Open Dialog</v-btn>-->
+        <v-card>
+          <v-card-title>
+            <span class="headline">User Profile</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container grid-list-md>
+              <v-layout wrap>
+                <v-flex xs12 sm6 md4>
+                  <v-text-field label="Legal first name" required></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6 md4>
+                  <v-text-field label="Legal middle name" hint="example of helper text only on focus"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6 md4>
+                  <v-text-field label="Legal last name" hint="example of persistent helper text"
+                    persistent-hint
+                    required
+                  ></v-text-field>
+                </v-flex>
+                <v-flex xs12>
+                  <v-text-field label="Email" required></v-text-field>
+                </v-flex>
+                <v-flex xs12>
+                  <v-text-field label="Password" type="password" required></v-text-field>
+                </v-flex>
+
+              </v-layout>
+            </v-container>
+            <small>*indicates required field</small>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="blue darken-1" flat @click="OnAnalysisClose">Close</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <v-flex xs12 v-show="data_grid" >
         <v-card>
 
             <v-card-title>
               <div>
                 <h3 class="headline mb-0">Change Prices of Pizzas</h3>
               </div>
+              <v-spacer></v-spacer>
+              <v-btn class="analysis-btn" color="blue" dark @click="OnAnalysis" >Analysis</v-btn>
             </v-card-title>
 
             <v-data-table
@@ -30,16 +85,17 @@
 
             <template slot="items" slot-scope="props">
 
-              <!--@click="onRowClilck($event,props)"-->
               <tr >
 
-                <td v-for="(column, index) in headers" :key="index" class="text-xs-right">
+                <td
+                  v-for="(column, index) in headers"
+                  :key="index"
+                  class="text-xs-right">
 
                   <template v-if="column.type==='fix'">
                       {{ props.item[column.value] }}
                   </template>
 
-                  <!--v-on:keyup.enter="onInputDataTableItemChange(props.item)"-->
                   <template v-if="column.type=='editable'" >
                     <v-text-field class="data-table-editable"
                           slot="input"
@@ -83,7 +139,8 @@ import ServerProxy from "../proxy/server-proxy.js"
     },
     data() {
       return {
-        dialog: true,
+        analysis_dlg: false,
+        data_grid: true,
         startUpdateRoutine: false,
         serverProxy: null,
         headers: [
@@ -96,20 +153,25 @@ import ServerProxy from "../proxy/server-proxy.js"
         items: this.$store.getters.getPizzas
       }
     },
-//    computed: {
-//      message() {
-//        return this.$store.getters.getMessage;
-//      }
-//    },
     created: function () {
       this.serverProxy = new ServerProxy();
     },
     methods: {
+      OnAnalysis() {
+        this.data_grid = false;
+        this.analysis_dlg = true;
+      },
+      OnAnalysisClose() {
+        this.analysis_dlg = false;
+        this.data_grid = true;
+      },
+
+
       OnCancel() {
         return this.$router.push('/');
       },
       OnUpdate() {
-        this.dialog = false;
+        this.data_grid = false;
         this.startUpdateRoutine = true;
 
         this.items.forEach( item => {
@@ -124,7 +186,6 @@ import ServerProxy from "../proxy/server-proxy.js"
         this.$store.dispatch('setPizzas', this.items );
 
         this.serverProxy.updatePizzas( this.items, res => {
-
           if(res.status === 'fail') {
             this.$store.dispatch("setMessage", res.error );
             this.$store.dispatch("setMessageImage", 'attention.png' );
@@ -133,9 +194,6 @@ import ServerProxy from "../proxy/server-proxy.js"
           else if(res.status === 'success') {
             return this.$router.push('/');
           }
-
-
-
         });
       },
       getImgUrl(pic) {
