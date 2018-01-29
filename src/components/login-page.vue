@@ -17,10 +17,10 @@
               <v-layout wrap>
 
                 <v-flex xs12>
-                  <v-text-field label="Name" required></v-text-field>
+                  <v-text-field v-model="name" label="Name" required></v-text-field>
                 </v-flex>
                 <v-flex xs12>
-                  <v-text-field label="Password" type="password" required></v-text-field>
+                  <v-text-field v-model="pwd" label="Password" type="password" required></v-text-field>
                 </v-flex>
 
               </v-layout>
@@ -58,8 +58,8 @@
     },
     data () {
       return {
-        name: "admin",
-        pwd: "admin",
+        name: "",
+        pwd: "",
         dialog: true,
         startLoginRoutine: false,
         serverProxy: null
@@ -67,11 +67,6 @@
     },
     created: function () {
       this.serverProxy = new ServerProxy();
-    },
-    computed: {
-//      pizza() {
-//        return this.$store.getters.getPizza( this.id )
-//      }
     },
     methods: {
       onClose() {
